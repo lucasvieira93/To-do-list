@@ -20,9 +20,8 @@ class MainActivity : AppCompatActivity() {
             var message = intent.getStringExtra("titulo").toString()
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
-        //lista Array para mostrar - TODO(reason = "A lista só retorna o ultimo valor repetidamente")
-
-        val dados = Array(3) { "Lucas"; "Matheus"; "Junior" }
+        //lista Array para mostrar
+        val dados = arrayOf("Lucas", "Matheus", "Junior")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, dados)
         listview_tarefas.adapter = adapter
 
