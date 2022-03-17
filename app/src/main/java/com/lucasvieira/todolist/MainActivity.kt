@@ -13,15 +13,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Pegar dados da tela anterior - TODO(reason = "A lista só retorna o ultimo valor repetidamente")
+        var dados = arrayOf("Lucas", "Matheus", "Junior", "Vinicius", "Tamires")
 
+        //Pegar dados da tela anterior
         var bundle: Bundle? = intent.extras
         if (bundle != null) {
-            var message = intent.getStringExtra("titulo").toString()
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            val message = intent.getStringExtra("titulo").toString()
+            dados += message
         }
+
         //lista Array para mostrar
-        val dados = arrayOf("Lucas", "Matheus", "Junior")
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, dados)
         listview_tarefas.adapter = adapter
 
@@ -31,5 +32,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
+
 
 }
