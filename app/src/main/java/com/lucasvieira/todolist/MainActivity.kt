@@ -1,5 +1,6 @@
 package com.lucasvieira.todolist
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,7 +32,28 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AdicionarActivity::class.java)
             startActivity(intent)
         }
+
+        //ação segurando FAB TODO - setar longclick na listview
+        fab_tarefa.setOnLongClickListener {
+            confirmaDeletar()
+            true
+        }
     }
 
+    fun confirmaDeletar() {
+        val dialog: AlertDialog.Builder = AlertDialog.Builder(this)
+
+        //Configura título e msg
+        dialog.setTitle("Clique longo!")
+        dialog.setMessage("Deseja testar algo?")
+        dialog.setIcon(R.drawable.ic_deletar)
+
+        // TODO - setar ação no botão positivo
+        dialog.setPositiveButton("Sim", null)
+        dialog.setNegativeButton("Não", null)
+        dialog.create()
+        dialog.show()
+
+    }
 
 }
