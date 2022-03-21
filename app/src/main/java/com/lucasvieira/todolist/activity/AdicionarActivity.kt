@@ -1,4 +1,4 @@
-package com.lucasvieira.todolist
+package com.lucasvieira.todolist.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,8 @@ import android.widget.Toast
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.lucasvieira.todolist.R
+import com.lucasvieira.todolist.format
 import kotlinx.android.synthetic.main.activity_add_task.*
 import java.util.*
 
@@ -35,7 +37,9 @@ class AdicionarActivity : AppCompatActivity() {
                     .build()
 
             picker.addOnPositiveButtonClickListener{
-                edit_text_hora.setText("${picker.hour}:${picker.minute}")
+                val minute = if (picker.minute in 0..9) "0${picker.minute}" else picker.minute
+                val hour = if (picker.hour in 0..9) "0${picker.hour}" else picker.hour
+                edit_text_hora.setText("$hour:$minute")
             }
 
             picker.show(supportFragmentManager, "HOUR_PICKER_TAG")
