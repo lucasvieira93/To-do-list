@@ -4,7 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import kotlinx.android.synthetic.main.activity_add_task.*
+import java.util.*
 
 class AdicionarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +26,31 @@ class AdicionarActivity : AppCompatActivity() {
         btn_cancel.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        edit_text_hora.setOnClickListener{
+            val picker =
+                MaterialTimePicker.Builder()
+                    .setTimeFormat(TimeFormat.CLOCK_24H)
+                    .setTitleText("Qual horário?")
+                    .build()
+
+            picker.show(supportFragmentManager, "HOUR_PICKER_TAG")
+        }
+
+        edit_text_data.setOnClickListener {
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Qual data?")
+                    .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                    .build()
+
+            datePicker.addOnPositiveButtonClickListener {
+                val timeZone = TimeZone.getDefault()
+                val offset = timeZone.getOffset(Date().time) * -1
+                edit_text_data?.setText(Date(it + offset).format())
+            }
+            datePicker.show(supportFragmentManager, "DATE_PICKER_TAG")
         }
     }
 }

@@ -61,6 +61,7 @@
         app:startIconDrawable="@drawable/ic_calendar">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
@@ -80,6 +81,7 @@
         app:startIconDrawable="@drawable/ic_time">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_hora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
