@@ -19,13 +19,12 @@ class AdicionarActivity : AppCompatActivity() {
             val tarefa_titulo = edit_text_titulo.text.toString()
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("titulo", tarefa_titulo)
-            Toast.makeText(this, "Tarefa ${tarefa_titulo} foi adicionada!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${tarefa_titulo} foi adicionada!", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
 
         btn_cancel.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+           finish()
         }
 
         edit_text_hora.setOnClickListener{
@@ -34,6 +33,10 @@ class AdicionarActivity : AppCompatActivity() {
                     .setTimeFormat(TimeFormat.CLOCK_24H)
                     .setTitleText("Qual horário?")
                     .build()
+
+            picker.addOnPositiveButtonClickListener{
+                edit_text_hora.setText("${picker.hour}:${picker.minute}")
+            }
 
             picker.show(supportFragmentManager, "HOUR_PICKER_TAG")
         }
